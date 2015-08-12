@@ -241,7 +241,7 @@ decode_extensions(Types, [{Fnum, Bytes} | Tail], Acc) ->
             case lists:member(repeated, Opts) of
                 true ->
                     case lists:keytake(FNum, 1, Acc) of
-                        {value, {FNum, Name, List}, Acc1} ->
+                        {value, {_, Name, List}, Acc1} ->
                             decode(Rest1, Types, [{FNum, Name, lists:reverse([int_to_enum(Type,Value1)|lists:reverse(List)])}|Acc1]);
                         false ->
                             decode(Rest1, Types, [{FNum, Name, [int_to_enum(Type,Value1)]}|Acc])
